@@ -67,7 +67,7 @@ process.stdin.on('end', function() {
       'Thanks \n' +
       'Sam Teahan';
 
-    // console.log(firstName + ' email: ' + email);
+    console.log(firstName + ' email: ' + email);
 
     var message = new Email({
       from: 'sammyteahan@gmail.com',
@@ -75,6 +75,7 @@ process.stdin.on('end', function() {
       subject: 'Home Teaching',
       body: msg
     });
+   
     // message.send(errorHandler);
   });
 });
