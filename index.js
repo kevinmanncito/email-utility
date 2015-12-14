@@ -55,6 +55,7 @@
   process.stdin.on('end', function() {
     
     var elders = JSON.parse(data);
+    
     console.log('\nThere are currently: ' + elders.length + ' registered in lds.org');
     console.log('Elders without an email address: ' + withoutEmail(elders) + '\n');
 
