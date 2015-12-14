@@ -1,5 +1,5 @@
 /**
-* @desc this script accepts the payload from
+* @desc this script accepts the JSON payload from
 * https://www.lds.org/directory/services/ludrs/1.1/unit/roster/131296/ELDER
 * and sends each elder with an email address a message
 */
