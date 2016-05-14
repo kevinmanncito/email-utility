@@ -6,8 +6,15 @@
   */
 
   var lib = require('./node_modules/email/index.js'),
+    axios = require('axios'),
     Email = lib.Email,
-    data = '';
+    data  = '',
+    key   = 'key-e37e964ac557f4fe87bfa0717279944f';
+
+  var api_key = 'key-e37e964ac557f4fe87bfa0717279944f';
+  var domain = 'sandbox20c4f050e2d74fb89b06fab37ddf8f69.mailgun.org';
+  var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
 
   /**
   * @desc returns the result from our
@@ -33,9 +40,39 @@
   */
   function withoutEmail(data) {
     return data.reduce((curr, next) => {
-      if(next.email) return curr;
+      if (next.email) return curr;
       else return ++curr;
     }, 0);
+  }
+
+  /**
+  * @desc helper function to send email via mailgun
+  *
+  * @param {String} - name
+  * @param {String} - email
+  */
+  function sendEmail(name, email) {
+    var text = 'Hey ' + name + ',\n' +
+      'We\'re just checking in again to see if you were able to get your home teaching done during the month of April.\n' +
+      'Please send us an email at logan29eq@gmail.com and let us know how things went with your families, ' +
+      'and if there is anything we can help with. If you don\'t have, or don\'t know your assignment, ' +
+      'please let us know as well and we will contact you with your assignment.' +
+      '\n' +
+      '\n' +
+      'Thanks! \n' +
+      'Logan 29th Elders Quorum Presidency';
+    var message = {
+      from: 'logan29eq@gmail.com',
+      to: email,
+      subject: 'April Home Teaching',
+      text: text
+    };
+    mailgun.messages().send(message, function (error, body) {
+      if (error) {
+        console.log(error);
+      }
+      console.log(`Message sent to ${email}`);
+    });
   }
 
 
@@ -44,41 +81,31 @@
   */
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
+
   process.stdin.on('data', function (chunk) {
     data += chunk;
   });
 
-
   /**
-  * @desc do work son
+  * @desc do work once we have our data
   */
   process.stdin.on('end', function() {
-    
+
     var elders = JSON.parse(data);
-    
+
     console.log('\nThere are currently: ' + elders.length + ' registered in lds.org');
     console.log('Elders without an email address: ' + withoutEmail(elders) + '\n');
 
     elders.forEach((elder) => {
       var email = elder.email.trim() || '',
         name = elder.preferredName.split(', ')[1],
-        firstName = name.split(' ')[0],
-        msg = 'Hey ' + firstName + ' just wondering \n' +
-        'if you got your home teaching done! if you have \n' + 
-        'please email your district leader, those are listed below \n \n' + 
-        'Thanks \n' +
-        'Sam Teahan';
+        firstName = name.split(' ')[0];
 
-      console.log(firstName + ' email: ' + email);
-
-      var message = new Email({
-        from: 'sammyteahan@gmail.com',
-        to: email,
-        subject: 'Home Teaching',
-        body: msg
-      });
-     
-      // message.send(errorHandler);
+      if (email) {
+        console.log(`${firstName} email: ${email}`);
+        // sendEmail(firstName, email);
+      }
     });
+
   });
 }());
