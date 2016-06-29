@@ -53,10 +53,10 @@
   */
   function sendEmail(name, email) {
     var text = 'Hey ' + name + ',\n' +
-      'We\'re just checking in again to see if you were able to get your home teaching done during the month of April.\n' +
+      'We\'re just checking in again to see if you were able to get your home teaching done during the month of May.\n' +
       'Please send us an email at logan29eq@gmail.com and let us know how things went with your families, ' +
       'and if there is anything we can help with. If you don\'t have, or don\'t know your assignment, ' +
-      'please let us know as well and we will contact you with your assignment.' +
+      'please let us know and we will contact you with your assignment.' +
       '\n' +
       '\n' +
       'Thanks! \n' +
@@ -64,7 +64,7 @@
     var message = {
       from: 'logan29eq@gmail.com',
       to: email,
-      subject: 'April Home Teaching',
+      subject: 'May Home Teaching',
       text: text
     };
     mailgun.messages().send(message, function (error, body) {
