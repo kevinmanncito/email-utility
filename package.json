@@ -4,7 +4,9 @@
   "description": "Simple email utility for home teaching notifications",
   "main": "index.js",
   "dependencies": {
-    "email": "^0.2.6"
+    "axios": "^0.9.1",
+    "email": "^0.2.6",
+    "mailgun-js": "^0.7.7"
   },
   "devDependencies": {},
   "scripts": {
