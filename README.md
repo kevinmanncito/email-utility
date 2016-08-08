@@ -1,4 +1,4 @@
-## Return and Report Email Script
+## Email Utility
 
 
 This script accepts the JSON payload from lds.org (see index.js) and emails each member in the list, as well as providing some basic info about the group.

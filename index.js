@@ -53,9 +53,9 @@
   * @desc do work son
   */
   process.stdin.on('end', function() {
-    
+
     var elders = JSON.parse(data);
-    
+
     console.log('\nThere are currently: ' + elders.length + ' registered in lds.org');
     console.log('Elders without an email address: ' + withoutEmail(elders) + '\n');
 
@@ -64,20 +64,20 @@
         name = elder.preferredName.split(', ')[1],
         firstName = name.split(' ')[0],
         msg = 'Hey ' + firstName + ' just wondering \n' +
-        'if you got your home teaching done! if you have \n' + 
-        'please email your district leader, those are listed below \n \n' + 
+        'if you got your home teaching done! if you have \n' +
+        'please email your district leader, those are listed below \n \n' +
         'Thanks \n' +
-        'Sam Teahan';
+        'Elders Quorum Presidency';
 
       console.log(firstName + ' email: ' + email);
 
       var message = new Email({
-        from: 'sammyteahan@gmail.com',
+        from: 'logan29eq@gmail.com',
         to: email,
         subject: 'Home Teaching',
         body: msg
       });
-     
+
       // message.send(errorHandler);
     });
   });
