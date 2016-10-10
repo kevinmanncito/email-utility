@@ -52,13 +52,12 @@
   * @param {String} - email
   */
   function sendEmail(name, email) {
-    var month = "July"
+    var month = "September"
     var text = 'Hey ' + name + ',\n' +
       'We\'re just checking in to see if you were able to get your home teaching done during the month of ' + month + '.\n' +
       'Please send us an email at logan29eq@gmail.com and let us know how things went with your families, ' +
       'and if there is anything we can help with. If you don\'t have, or don\'t know your assignment, ' +
       'please let us know and we will contact you with your assignment.\n\n' +
-      'There was a handful of you who already let us know you need an assignment last month, we will be getting you your assignment soon! Sorry for the delay!'
       '\n' +
       '\n' +
       'Thanks! \n' +
@@ -99,22 +98,6 @@
     console.log('Elders without an email address: ' + withoutEmail(elders) + '\n');
 
     elders.forEach((elder) => {
-      var email = elder.email.trim() || '',
-        name = elder.preferredName.split(', ')[1],
-        firstName = name.split(' ')[0],
-        msg = 'Hey ' + firstName + ' just wondering \n' +
-        'if you got your home teaching done! if you have \n' +
-        'please email your district leader, those are listed below \n \n' +
-        'Thanks \n' +
-        'Elders Quorum Presidency';
-
-      var message = new Email({
-        from: 'logan29eq@gmail.com',
-        to: email,
-        subject: 'Home Teaching',
-        body: msg
-      });
-
       if (email) {
         console.log(`${firstName} email: ${email}`);
         // sendEmail(firstName, email);
