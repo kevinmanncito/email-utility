@@ -53,11 +53,11 @@
   */
   function sendEmail(name, email) {
     var month = "September"
-    var text = 'Hey ' + name + ',\n' +
+    var text = 'Hey ' + name + ',\n\n' +
       'We\'re just checking in to see if you were able to get your home teaching done during the month of ' + month + '.\n' +
       'Please send us an email at logan29eq@gmail.com and let us know how things went with your families, ' +
       'and if there is anything we can help with. If you don\'t have, or don\'t know your assignment, ' +
-      'please let us know and we will contact you with your assignment.\n\n' +
+      'please let us know and we will contact you with your assignment.' +
       '\n' +
       '\n' +
       'Thanks! \n' +
@@ -102,9 +102,11 @@
           name = elder.preferredName.split(', ')[1],
           firstName = name.split(' ')[0];
 
-      if (email) {
-        console.log(`${firstName} email: ${email}`);
-        // sendEmail(firstName, email);
+      if (!email) {
+        console.log(`No email for: ${elder.preferredName}`);
+      } else {
+        console.log(`Emailing: ${name} - ${email}`);
+        sendEmail(firstName, email);
       }
     });
 
