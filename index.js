@@ -98,7 +98,10 @@
     console.log('Elders without an email address: ' + withoutEmail(elders) + '\n');
 
     elders.forEach((elder) => {
-      var email = elder.email.trim() || '';
+      var email = elder.email.trim() || '',
+          name = elder.preferredName.split(', ')[1],
+          firstName = name.split(' ')[0];
+
       if (email) {
         console.log(`${firstName} email: ${email}`);
         // sendEmail(firstName, email);
